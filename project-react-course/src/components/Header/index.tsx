@@ -1,7 +1,14 @@
 import logo from '../../assets/logo.png';
+import restart from '../../assets/restart.svg';
 import styles from './index.module.css';
 
-export function Header() {
+type HeaderProps = {
+  currentAttempt: number;
+  maxAttempts: number;
+  onRestart: () => void;
+}
+
+export function Header({ currentAttempt, maxAttempts, onRestart }: HeaderProps) {
   return (
     <div className={styles.container}>
       <img src={logo} alt="Logo" />
@@ -9,11 +16,11 @@ export function Header() {
         <header>
 
             <span>
-                <strong>5</strong> de 10 tentativas
+                <strong>{currentAttempt}</strong> de {maxAttempts} tentativas
             </span>
 
-            <button type="button">
-                <span>Nova Partida</span>
+            <button type="button" onClick={onRestart} title="Reiniciar Jogo">
+                <img src={restart} alt="Reiniciar Jogo" />
             </button>
 
         </header>
